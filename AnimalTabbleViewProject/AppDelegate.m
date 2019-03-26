@@ -16,17 +16,17 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     self.window = [UIWindow new] ;
+    
     ViewController * rootViewController = [ViewController new];
+    
     UINavigationController *uinavigetionController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
     self.window.rootViewController = uinavigetionController;
+    
     [self.window makeKeyAndVisible];
-    
-    
     
     return YES;
 }

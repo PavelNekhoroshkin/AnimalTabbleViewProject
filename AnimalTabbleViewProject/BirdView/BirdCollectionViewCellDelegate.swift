@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol BirdCollectionViewCellDelegete : class {
+protocol BirdCollectionViewCellDelegete : class
+{
     func didTap(cell: BirdCollectionViewCell)
     func viewCurlUp(view:UIView,animationTime:Float)
     func viewCurlDown(view:UIView,animationTime:Float)
