@@ -12,7 +12,6 @@
 #import "AnimalTabbleViewProject-Swift.h"
 
 
-
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -209,6 +208,7 @@
 
     [UIView commitAnimations];
 }
+
 
 
  @end

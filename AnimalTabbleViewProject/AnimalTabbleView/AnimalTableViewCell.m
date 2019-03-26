@@ -20,7 +20,6 @@
 @property (nonatomic, strong ) UILabel *subTitle;
 @property (nonatomic, strong ) NSLayoutConstraint *constraintCoverImageViewTopAncor;//вынесли ограничение в проперти
 @property (nonatomic, strong ) NSLayoutConstraint *bottomOfText;//вынесли ограничение в проперти
-@property (nonatomic, strong ) NSLayoutConstraint *align;//вынесли ограничение в проперти
 
 @end
 
@@ -118,6 +117,7 @@
 -(void) didTapCoverImage
 {
        [self pulseItem:self.coverImageView];
+       [self changeCollor];
 }
 
 -(void) pulseItem:(UIView *)item
@@ -138,6 +138,48 @@
     
     [item.layer addAnimation:scalingAnimation forKey:@"scaling"];
 }
+
+- (void) changeCollor
+{
+    CABasicAnimation *color = [CABasicAnimation animationWithKeyPath:@"borderColor"];
+   //меняем цвет рамкиа с белого на карсный
+    color.fromValue = (id)[UIColor redColor].CGColor;
+    color.toValue   = (id)[UIColor whiteColor].CGColor;
+    
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    //меняем ширину рамки
+    CABasicAnimation *width = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+    // animate from 2pt to 4pt wide border ...
+    width.fromValue = @0;
+    width.toValue   = @8;
+    // ... and change the model value
+    self.layer.borderWidth = 0;
+    
+    //меняем цвет ячейки
+    CABasicAnimation *background = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    // animate from 2pt to 4pt wide border ...
+    background.fromValue = (id)[UIColor grayColor].CGColor;
+    background.toValue   = (id)[UIColor whiteColor].CGColor;
+    
+    // ... and change the model value
+    self.layer.backgroundColor = [UIColor whiteColor].CGColor;
+
+    
+    
+    CAAnimationGroup *allAnimation = [CAAnimationGroup animation];
+    // animate both as a group with the duration of 0.5 seconds
+    allAnimation.duration   = 0.8;
+    allAnimation.animations = @[color, width, background];
+    // optionally add other configuration (that applies to both animations)
+    allAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    [self.layer addAnimation:allAnimation forKey:@"color and width"];
+    
+}
+
+
+
 @end
 
 
@@ -149,4 +191,4 @@
 
 //анимировать ячейки CAAnimation - градиент лейер при менить через CAAnimation анимацию (ячейка прыгает или двигается)
 
-
+//поменять базовый лейер у ячейки таблицы

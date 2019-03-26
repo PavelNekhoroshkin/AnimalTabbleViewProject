@@ -11,6 +11,7 @@
 
 @interface EvenAnimalTableViewCell : UITableViewCell
 @property (nonatomic, weak )  UITableView *tableView ;
+
 @end
 
 
